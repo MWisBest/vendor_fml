@@ -1,6 +1,7 @@
 ## Common FML Config ##
 
-SUPERUSER_PACKAGE_PREFIX := com.fml.superuser
+SUPERUSER_EMBEDDED := true
+SUPERUSER_PACKAGE_PREFIX := com.android.settings.fml.superuser
 
 # FML init.rc
 PRODUCT_COPY_FILES += \
