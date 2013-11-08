@@ -57,3 +57,17 @@ endif
 # Let's use Launcher3 and not Launcher2?
 PRODUCT_PACKAGES += \
     Launcher3
+
+# Disable excessive dalvik debug messages
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.debug.alloc=0
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    keyguard.no_require_sim=true \
+    ro.com.android.dataroaming=false \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.google.clientidbase=android-google \
+    ro.com.android.dateformat=MM-dd-yyyy
