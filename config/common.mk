@@ -53,3 +53,7 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Enable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
+
+# Let's use Launcher3 and not Launcher2?
+PRODUCT_PACKAGES += \
+    Launcher3
