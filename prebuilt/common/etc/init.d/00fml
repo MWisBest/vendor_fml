@@ -1,0 +1,30 @@
+#!/system/bin/sh
+
+# Wait for system to be "up"
+until [ $(busybox pgrep com.android.systemui) ] ; do
+    busybox sleep 1
+done
+
+# 537.6MHz min screen on frequency
+busybox echo 537600 > /sys/devices/system/cpu/cpu0/cpufreq/screen_on_min_freq
+# 729.6MHz max screen off frequency
+busybox echo 729600 > /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq
+# 384MHz GPU frequency
+busybox echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/gpu_oc
+# 1228.8MHz max CPU frequency
+busybox echo 1228800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+# 384.0MHz min CPU frequency
+busybox echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+
+## Misc FancyKernel things
+busybox sleep 5
+busybox echo 91 > /dev/cpuctl/apps/bg_non_interactive/cpu.shares
+busybox echo 400000 > /dev/cpuctl/apps/bg_non_interactive/cpu.rt_runtime_us
+busybox renice -18 $(busybox pgrep com.android.systemui)
+busybox renice 5 $(busybox pgrep kswapd)
+busybox echo $(busybox pgrep com.android.systemui) > /dev/cpuctl/tasks
+busybox echo 100000000 > /dev/cpuctl/apps/bg_non_interactive/timer_slack.min_slack_ns
+busybox echo 15000000 > /proc/sys/kernel/sched_latency_ns
+busybox echo 2000000 > /proc/sys/kernel/sched_min_granularity_ns
+echo 3000000 > /proc/sys/kernel/sched_wakeup_granularity_ns
+busybox echo 2 > /sys/block/mmcblk0/queue/rq_affinity
