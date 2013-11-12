@@ -71,3 +71,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.google.clientidbase=android-google \
     ro.com.android.dateformat=MM-dd-yyyy
+
+# init.d support
+PRODUCT_COPY_FILES += \
+    vendor/fml/prebuilt/common/bin/sysinit:system/bin/sysinit

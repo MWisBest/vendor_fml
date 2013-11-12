@@ -1,6 +1,9 @@
 # Superuser
 import /init.superuser.rc
 
+on post-fs-data
+    start sysinit
+
 on boot
     # interactive governor
     chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
@@ -79,3 +82,8 @@ on boot
 
     chown system system /dev/cpuctl/apps/cpu.notify_on_migrate
     chmod 0644 /dev/cpuctl/apps/cpu.notify_on_migrate
+
+service sysinit /system/bin/sysinit
+    user root
+    oneshot
+    disabled
