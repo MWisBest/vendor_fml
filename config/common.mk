@@ -34,7 +34,7 @@ PRODUCT_COPY_FILES += \
     vendor/fml/prebuilt/common/etc/init.fml.rc:root/init.fml.rc
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
- Superuser
+# Superuser
 PRODUCT_PACKAGES += \
     Superuser \
     su
