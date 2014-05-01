@@ -30,24 +30,24 @@ PRODUCT_BOOTANIMATION := vendor/fml/prebuilt/common/bootanimation/$(TARGET_BOOTA
 
 
 # FML init.rc
-#PRODUCT_COPY_FILES += \
-#    vendor/fml/prebuilt/common/etc/init.fml.rc:root/init.fml.rc
+PRODUCT_COPY_FILES += \
+    vendor/fml/prebuilt/common/etc/init.fml.rc:root/init.fml.rc
 
-#ifneq ($(TARGET_BUILD_VARIANT),user)
-# Superuser
-#PRODUCT_PACKAGES += \
-#    Superuser \
-#    su
+ifneq ($(TARGET_BUILD_VARIANT),user)
+ Superuser
+PRODUCT_PACKAGES += \
+    Superuser \
+    su
 
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    persist.sys.root_access=1
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.root_access=1
 
-#else
+else
 
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    persist.sys.root_access=0
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.root_access=0
 
-#endif
+endif
 
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Enable ADB authentication
@@ -55,8 +55,8 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
 # Let's use Launcher3 and not Launcher2?
-#PRODUCT_PACKAGES += \
-#    Launcher3
+PRODUCT_PACKAGES += \
+    Launcher3
 
 # Disable excessive dalvik debug messages
 #PRODUCT_PROPERTY_OVERRIDES += \
@@ -73,6 +73,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy
 
 # init.d support
-#PRODUCT_COPY_FILES += \
-#    vendor/fml/prebuilt/common/bin/sysinit:system/bin/sysinit \
-#    vendor/fml/prebuilt/common/etc/init.d/00fml:system/etc/init.d/00fml
+PRODUCT_COPY_FILES += \
+    vendor/fml/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/fml/prebuilt/common/etc/init.d/00fml:system/etc/init.d/00fml
